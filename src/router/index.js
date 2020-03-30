@@ -1,29 +1,31 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Vue from "vue";
+import VueRouter from "vue-router";
 
-Vue.use(VueRouter)
+// Vista Comun: Error
+import Error404 from "../views/Error404"
+
+// Rutas
+import routesPrivadas from "../router/routes/v1/private/routesPrivadas";
+import routesPublicas from "../router/routes/v1/public/routesPublicas";
+
+Vue.use(VueRouter);
 
 const routes = [
+  ...routesPublicas,
+  ...routesPrivadas,
   {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    // will match everything
+    path: "*",
+    component: Error404
   }
-]
+];
+
+console.log("routes", routes);
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: "history",
   base: process.env.BASE_URL,
   routes
-})
+});
 
-export default router
+export default router;
