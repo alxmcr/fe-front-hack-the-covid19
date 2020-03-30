@@ -1,10 +1,10 @@
 <template>
-  <div>UsuarioEnfermo</div>
+  <div>UsuarioEnfermo OnlyRead</div>
 </template>
 
 <script>
 export default {
-  name: "UsuarioEnfermo"
+  name: "UsuarioEnfermoOnlyRead"
 };
 </script>
 
