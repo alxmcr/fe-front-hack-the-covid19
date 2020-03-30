@@ -1,13 +1,15 @@
 <template>
   <div>
-    UsuarioProfile
+      Informacion de Rutas
   </div>
 </template>
 
 <script>
 export default {
-  name: "UsuarioProfile"
-};
+    name: "InformacionRutas"
+}
 </script>
 
-<style></style>
+<style>
+
+</style>

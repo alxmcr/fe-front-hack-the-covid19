@@ -1,12 +1,12 @@
 <template>
   <div>
-    UsuarioProfile
+    Informacion de Covid-19
   </div>
 </template>
 
 <script>
 export default {
-  name: "UsuarioProfile"
+  name: "InformacionCovid19"
 };
 </script>
 
