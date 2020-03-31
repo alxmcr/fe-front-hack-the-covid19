@@ -78,7 +78,9 @@ export default {
             ? entry.Description.slice(0, this.descriptionLimit) + "..."
             : entry.Description;
 
-        return Object.assign({}, entry, { Description });
+        const result = Object.assign({}, entry, { Description });
+        console.log("result", result);
+        return result;
       });
     }
   },
