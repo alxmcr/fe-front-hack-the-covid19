@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>Viajes</h1>
     <ViajeTableManager />
   </div>
 </template>

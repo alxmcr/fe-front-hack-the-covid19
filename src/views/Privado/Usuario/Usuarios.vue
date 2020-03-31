@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>Usuarios</h1>
     <UsuarioTableManager />
   </div>
 </template>
