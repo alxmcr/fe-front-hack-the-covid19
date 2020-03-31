@@ -1,7 +1,9 @@
 import RutaRepository from "../api/tables/repositoryRuta";
+import BusRepository from "../api/tables/repositoryBus";
 
 const RepositoriesTables = {
-  rutas: RutaRepository,
+  ruta: RutaRepository,
+  bus: BusRepository,
 };
 
 export default RepositoriesTables;
