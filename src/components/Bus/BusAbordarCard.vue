@@ -1,18 +1,7 @@
 <template>
   <v-card color="red lighten-2" dark>
-    <v-card-title class="headline red lighten-3">
-      Search for Public APIs
-    </v-card-title>
-    <v-card-text>
-      Explore hundreds of free API's ready for consumption! For more information
-      visit
-      <a
-        class="grey--text text--lighten-3"
-        href="https://github.com/toddmotto/public-apis"
-        target="_blank"
-        >the Github repository</a
-      >.
-    </v-card-text>
+    <v-card-title>Abordar un bus</v-card-title>
+    <v-card-subtitle>Busque el bus que desea abordar</v-card-subtitle>
     <v-card-text>
       <v-autocomplete
         v-model="apiModel"
@@ -43,7 +32,11 @@
     </v-expand-transition>
     <v-card-actions>
       <v-spacer></v-spacer>
-      <v-btn :disabled="!apiModel" color="grey darken-3" @click="apiModel = null">
+      <v-btn
+        :disabled="!apiModel"
+        color="grey darken-3"
+        @click="apiModel = null"
+      >
         Clear
         <v-icon right>mdi-close-circle</v-icon>
       </v-btn>
