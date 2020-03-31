@@ -1,7 +1,7 @@
 <template>
   <v-data-table
-    :headers="tableRutas.headersRutas"
-    :items="rutas"
+    :headers="tableRuta.headersRuta"
+    :items="listaRuta"
     sort-by="ru_nombre"
     class="elevation-1"
   >
@@ -11,7 +11,7 @@
         <v-divider class="mx-4" inset vertical></v-divider>
         <v-spacer></v-spacer>
         <!-- Dialog -->
-        <v-dialog v-model="tableRutas.dialog" max-width="500px">
+        <v-dialog v-model="tableRuta.dialog" max-width="500px">
           <template v-slot:activator="{ on }">
             <v-btn color="primary" dark class="mb-2" v-on="on">Nueva Ruta</v-btn>
           </template>
@@ -70,13 +70,13 @@
 // Repository Factory
 import { RepositoryFactory } from "../../repositories/RepositoryFactory";
 // Repositories
-const RutasRepository = RepositoryFactory.get("rutas");
+const RutaRepository = RepositoryFactory.get("ruta");
 
 export default {
   name: "RutaTableManager",
   data() {
     return {
-      rutas: [],
+      listaRuta: [],
       editedIndex: -1,
       editedRuta: {
         ru_ruta: 0,
@@ -92,9 +92,9 @@ export default {
         ru_lugar_destino: "",
         ru_estado: true
       },
-      tableRutas: {
+      tableRuta: {
         dialog: false,
-        headersRutas: [
+        headersRuta: [
           {
             text: "ID Ruta",
             align: "start",
@@ -127,33 +127,32 @@ export default {
   },
   methods: {
     initialize() {
-      RutasRepository.get()
+      RutaRepository.get()
         .then(response => {
-          this.rutas = response.data.data;
+          this.listaRuta = response.data.data;
         })
         .catch(error => {
           console.error(error);
         });
     },
     editRuta(item) {
-      this.editedIndex = this.rutas.indexOf(item);
+      this.editedIndex = this.listaRuta.indexOf(item);
       this.editedRuta = Object.assign({}, item);
-      this.tableRutas.dialog = true;
-      console.log("this.editedIndex", this.editedIndex);
+      this.tableRuta.dialog = true;
     },
 
     deleteRuta(item) {
-      const index = this.rutas.indexOf(item);
+      const index = this.listaRuta.indexOf(item);
       // Get id
       const { ru_ruta } = item;
       // Call to service
       this.callToServiceDeleteRuta(ru_ruta);
       // Quitar de la tabla
-      this.rutas.splice(index, 1);
+      this.listaRuta.splice(index, 1);
     },
 
     close() {
-      this.tableRutas.dialog = false;
+      this.tableRuta.dialog = false;
       setTimeout(() => {
         this.editedRuta = Object.assign({}, this.defaultRuta);
         this.editedIndex = -1;
@@ -161,14 +160,13 @@ export default {
     },
 
     save() {
-      console.log("this.editedIndextttt", this.editedIndex);
       if (this.editedIndex > -1) {
         // Get id
         const { ru_ruta } = this.editedRuta;
         // Call to service
         this.callToServiceUpdateRuta(ru_ruta, this.editedRuta);
         // Update
-        Object.assign(this.rutas[this.editedIndex], this.editedRuta);
+        Object.assign(this.listaRuta[this.editedIndex], this.editedRuta);
       } else {
         // Call to service
         this.callToServiceCreateRuta(this.editedRuta);
@@ -176,20 +174,20 @@ export default {
       this.close();
     },
     callToServiceCreateRuta(ruta) {
-      RutasRepository.createRuta(ruta)
+      RutaRepository.createRuta(ruta)
         .then(response => {
           const { data } = response;
           // Ruta creada
           const ruta = data.data;
           // Push
-          this.rutas.push(ruta);
+          this.listaRuta.push(ruta);
         })
         .catch(error => {
           console.error(error);
         });
     },
     callToServiceUpdateRuta(id, ruta) {
-      RutasRepository.updateRuta(id, ruta)
+      RutaRepository.updateRuta(id, ruta)
         .then(response => {
           // Log
           console.log("response", response);
@@ -199,7 +197,7 @@ export default {
         });
     },
     callToServiceDeleteRuta(id) {
-      RutasRepository.deleteRuta(id)
+      RutaRepository.deleteRuta(id)
         .then(response => {
           // Log
           console.log("response", response);
