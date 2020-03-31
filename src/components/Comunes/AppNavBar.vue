@@ -12,6 +12,8 @@
           <b-nav-item to="/about">Nuestro servicio</b-nav-item>
           <b-nav-item to="/rutas">Rutas</b-nav-item>
           <b-nav-item to="/buses">Buses</b-nav-item>
+          <b-nav-item to="/buses/abordar">Abordar a un Bus</b-nav-item>
+          <b-nav-item to="/viajes/iniciar">Iniciar Recorrido</b-nav-item>
           <b-nav-item to="/viajes">Viajes</b-nav-item>
           <b-nav-item to="/usuarios">Usuarios</b-nav-item>
           <b-nav-item to="/usuarios/enfermos">Confirmados con COVID-19</b-nav-item>
