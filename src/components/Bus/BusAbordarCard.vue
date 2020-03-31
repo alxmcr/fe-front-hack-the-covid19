@@ -98,7 +98,7 @@ export default {
   },
 
   watch: {
-    search() {
+    async search() {
       // Items have already been loaded
       if (this.items.length > 0) return;
 
@@ -108,14 +108,14 @@ export default {
       this.isLoading = true;
 
       // Lazily load input items
-      BusRepository.get()
-        .then(response => {
-          this.busList = response.data.data;
-        })
-        .catch(error => {
-          console.error(error);
-        })
-        .finally(() => (this.isLoading = false));
+      try {
+        const response = await BusRepository.get();
+        this.busList = response.data.data;
+      } catch (error) {
+        console.error(error);
+      } finally {
+        this.isLoading = false;
+      }
     }
   }
 };
