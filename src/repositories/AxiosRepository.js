@@ -2,7 +2,7 @@ import axios from "axios";
 
 import { HOST, PORT, API_VERSION } from "../config/backendServerConfig";
 
-const baseDomain = `http://${HOST}:${PORT}`;
+const baseDomain = `https://${HOST}:${PORT}`;
 
 // The base URL
 const baseURL = `${baseDomain}/api/${API_VERSION}/`;
