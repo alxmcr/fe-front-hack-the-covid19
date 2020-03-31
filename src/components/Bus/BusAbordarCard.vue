@@ -22,12 +22,31 @@
     <v-divider></v-divider>
     <v-expand-transition>
       <v-list v-if="busModel" class="primary lighten-3">
-        <v-list-item v-for="(field, i) in fields" :key="i">
-          <v-list-item-content>
-            <v-list-item-title v-text="field.value"></v-list-item-title>
-            <v-list-item-subtitle v-text="field.key"></v-list-item-subtitle>
-          </v-list-item-content>
-        </v-list-item>
+        <span v-for="(field, i) in fields" :key="i">
+          <v-list-item v-if="field.key != 'listViaje'">
+            <v-list-item-content>
+              <v-list-item-title v-text="field.value"></v-list-item-title>
+              <v-list-item-subtitle v-text="field.key"></v-list-item-subtitle>
+            </v-list-item-content>
+          </v-list-item>
+        </span>
+      </v-list>
+    </v-expand-transition>
+    <v-expand-transition>
+      <v-list v-if="busModel" class="secondary lighten-3">
+        <span v-for="(field, i) in fields" :key="i">
+          <v-list-item v-if="field.key == 'listViaje'">
+            <v-list-item-content>
+              <v-list v-if="field.value" class="secondary lighten-3">
+                <v-list-item v-for="(field, i) in field.value" :key="i">
+                  <v-list-item-content>
+                    {{ field }}
+                  </v-list-item-content>
+                </v-list-item>
+              </v-list>
+            </v-list-item-content>
+          </v-list-item>
+        </span>
       </v-list>
     </v-expand-transition>
     <v-card-actions>
