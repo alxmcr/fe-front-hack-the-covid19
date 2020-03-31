@@ -17,7 +17,8 @@
           </template>
           <v-card>
             <v-card-title>
-              <span class="headline">{{ formTitle }}</span>
+              <span class="headline" v-if="editedIndex < 0 ">{{ formTitle }}</span>
+              <span class="headline" v-else>{{ formTitle }} #{{editedRuta.ru_ruta}}</span>
             </v-card-title>
 
             <v-card-text>
@@ -51,6 +52,13 @@
         </v-dialog>
       </v-toolbar>
     </template>
+    <template v-slot:item.ru_estado="{ item }">
+      <v-icon>
+        {{
+        item.ru_estado ? "mdi-checkbox-marked" : "mdi-checkbox-blank-outline"
+        }}
+      </v-icon>
+    </template>
     <template v-slot:item.actions="{ item }">
       <v-icon small class="mr-2" @click="editRuta(item)">mdi-pencil</v-icon>
       <v-icon small @click="deleteRuta(item)">mdi-delete</v-icon>
@@ -62,6 +70,11 @@
 </template>
 
 <script>
+// Repository Factory
+import { RepositoryFactory } from "../../repositories/RepositoryFactory";
+// Repositories
+const RutasRepository = RepositoryFactory.get("rutas");
+
 export default {
   name: "RutaTableManager",
   data() {
@@ -116,11 +129,19 @@ export default {
     this.initialize();
   },
   methods: {
-    initialize() {},
+    initialize() {
+      RutasRepository.get()
+        .then(response => {
+          this.rutas = response.data.data;
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    },
     editRuta(item) {
       this.editedIndex = this.rutas.indexOf(item);
       this.editedRuta = Object.assign({}, item);
-      this.dialog = true;
+      this.tableRutas.dialog = true;
     },
 
     deleteRuta(item) {
@@ -130,7 +151,7 @@ export default {
     },
 
     close() {
-      this.dialog = false;
+      this.tableRutas.dialog = false;
       setTimeout(() => {
         this.editedRuta = Object.assign({}, this.defaultRuta);
         this.editedIndex = -1;
@@ -139,11 +160,23 @@ export default {
 
     save() {
       if (this.editedIndex > -1) {
+        // Call to service
+        this.callToServiceUpdateRuta(this.editedRuta);
+        // Update table
         Object.assign(this.rutas[this.editedIndex], this.editedRuta);
       } else {
+        // Call to service
+        this.callToServiceCreateRuta(this.editedRuta);
+        // Push
         this.rutas.push(this.editedRuta);
       }
       this.close();
+    },
+    callToServiceCreateRuta(ruta) {
+      console.log("Ruta a crear", ruta);
+    },
+    callToServiceUpdateRuta(ruta) {
+      console.log("Ruta a actualizar", ruta);
     }
   }
 };
