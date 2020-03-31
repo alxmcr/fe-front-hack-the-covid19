@@ -15,7 +15,7 @@
     </v-card-text>
     <v-card-text>
       <v-autocomplete
-        v-model="model"
+        v-model="apiModel"
         :items="items"
         :loading="isLoading"
         :search-input.sync="search"
@@ -32,7 +32,7 @@
     </v-card-text>
     <v-divider></v-divider>
     <v-expand-transition>
-      <v-list v-if="model" class="red lighten-3">
+      <v-list v-if="apiModel" class="red lighten-3">
         <v-list-item v-for="(field, i) in fields" :key="i">
           <v-list-item-content>
             <v-list-item-title v-text="field.value"></v-list-item-title>
@@ -43,7 +43,7 @@
     </v-expand-transition>
     <v-card-actions>
       <v-spacer></v-spacer>
-      <v-btn :disabled="!model" color="grey darken-3" @click="model = null">
+      <v-btn :disabled="!apiModel" color="grey darken-3" @click="apiModel = null">
         Clear
         <v-icon right>mdi-close-circle</v-icon>
       </v-btn>
@@ -56,18 +56,18 @@ export default {
     descriptionLimit: 60,
     entries: [],
     isLoading: false,
-    model: null,
+    apiModel: null,
     search: null
   }),
 
   computed: {
     fields() {
-      if (!this.model) return [];
+      if (!this.apiModel) return [];
 
-      return Object.keys(this.model).map(key => {
+      return Object.keys(this.apiModel).map(key => {
         return {
           key,
-          value: this.model[key] || "n/a"
+          value: this.apiModel[key] || "n/a"
         };
       });
     },
