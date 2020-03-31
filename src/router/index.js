@@ -20,7 +20,7 @@ const routes = [
   }
 ];
 
-console.log("routes", routes);
+// console.log("routes", routes);
 
 const router = new VueRouter({
   mode: "history",
