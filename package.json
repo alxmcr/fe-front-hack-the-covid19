@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@mdi/font": "^3.6.95",
+    "bootstrap": "^4.4.1",
+    "bootstrap-vue": "^2.9.0",
     "core-js": "^3.6.4",
     "register-service-worker": "^1.6.2",
     "roboto-fontface": "*",
