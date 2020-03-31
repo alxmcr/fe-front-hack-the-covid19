@@ -13,34 +13,59 @@
         <!-- Dialog -->
         <v-dialog v-model="tableViaje.dialog" max-width="500px">
           <template v-slot:activator="{ on }">
-            <v-btn color="primary" dark class="mb-2" v-on="on">Nuevo Viaje</v-btn>
+            <v-btn color="primary" dark class="mb-2" v-on="on"
+              >Nuevo Viaje</v-btn
+            >
           </template>
           <v-card>
             <v-card-title>
-              <span class="headline" v-if="editedIndex < 0 ">{{ formTitle }}</span>
-              <span class="headline" v-else>{{ formTitle }} #{{editedViaje.vi_viaje}}</span>
+              <span class="headline" v-if="editedIndex < 0">{{
+                formTitle
+              }}</span>
+              <span class="headline" v-else
+                >{{ formTitle }} #{{ editedViaje.vi_viaje }}</span
+              >
             </v-card-title>
 
             <v-card-text>
               <v-container>
                 <v-row>
                   <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedViaje.vi_codigo" label="Codigo"></v-text-field>
+                    <v-text-field
+                      v-model="editedViaje.vi_codigo"
+                      label="Codigo"
+                    ></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedViaje.vi_fecha_viaje" label="Fecha Viaje"></v-text-field>
+                    <v-text-field
+                      v-model="editedViaje.vi_fecha_viaje"
+                      label="Fecha Viaje"
+                    ></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedViaje.vi_hora_partida" label="Hora Partida"></v-text-field>
+                    <v-text-field
+                      v-model="editedViaje.vi_hora_partida"
+                      label="Hora Partida"
+                    ></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedViaje.vi_hora_llegada" label="Hora Llegada"></v-text-field>
+                    <v-text-field
+                      v-model="editedViaje.vi_hora_llegada"
+                      label="Hora Llegada"
+                    ></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedViaje.bu_bus" label="Bus"></v-text-field>
+                    <v-text-field
+                      v-model="editedViaje.bu_bus"
+                      label="Bus"
+                    ></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="4">
-                    <v-checkbox v-model="editedViaje.vi_estado" color="primary" label="Estado"></v-checkbox>
+                    <v-checkbox
+                      v-model="editedViaje.vi_estado"
+                      color="primary"
+                      label="Estado"
+                    ></v-checkbox>
                   </v-col>
                 </v-row>
               </v-container>
@@ -58,11 +83,21 @@
     <template v-slot:item.vi_estado="{ item }">
       <v-icon>
         {{
-        item.vi_estado ? "mdi-checkbox-marked" : "mdi-checkbox-blank-outline"
+          item.vi_estado ? "mdi-checkbox-marked" : "mdi-checkbox-blank-outline"
         }}
       </v-icon>
     </template>
     <template v-slot:item.actions="{ item }">
+      <v-btn
+        text
+        icon
+        color="primary"
+        :to="`viajes/${item.vi_viaje}/info`"
+        tile
+        v-on="on"
+      >
+        <v-icon small class="mr-2" color="primary">mdi-eye</v-icon>
+      </v-btn>
       <v-icon small class="mr-2" @click="editViaje(item)">mdi-pencil</v-icon>
       <v-icon small @click="deleteViaje(item)">mdi-delete</v-icon>
     </template>
@@ -222,5 +257,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>
