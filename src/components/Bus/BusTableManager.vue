@@ -105,7 +105,7 @@ export default {
           { text: "Placa", value: "bu_placa" },
           { text: "Ruta", value: "bu_bus" },
           { text: "Estado", value: "bu_estado" },
-          { text: "Actiones", value: "actions", sortable: false }
+          { text: "Acciones", value: "actions", sortable: false }
         ]
       }
     };

@@ -105,7 +105,7 @@ export default {
           { text: "Partida", value: "ru_lugar_partida" },
           { text: "Llegada", value: "ru_lugar_destino" },
           { text: "Estado", value: "ru_estado" },
-          { text: "Actiones", value: "actions", sortable: false }
+          { text: "Acciones", value: "actions", sortable: false }
         ]
       }
     };

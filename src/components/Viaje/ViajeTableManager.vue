@@ -117,7 +117,7 @@ export default {
           { text: "Hora de Llegada", value: "vi_hora_llegada" },
           { text: "Bus", value: "bu_bus" },
           { text: "Estado", value: "vi_estado" },
-          { text: "Actiones", value: "actions", sortable: false }
+          { text: "Acciones", value: "actions", sortable: false }
         ]
       }
     };

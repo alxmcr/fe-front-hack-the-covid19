@@ -144,7 +144,7 @@ export default {
           { text: "Telefono Movil", value: "ue_telefono_movil" },
           { text: "Telefono Movil", value: "ue_telefono_movil" },
           { text: "Estado", value: "ue_estado" },
-          { text: "Actiones", value: "actions", sortable: false }
+          { text: "Acciones", value: "actions", sortable: false }
         ]
       }
     };
