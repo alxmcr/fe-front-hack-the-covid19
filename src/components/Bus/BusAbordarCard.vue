@@ -83,7 +83,9 @@ export default {
   },
 
   watch: {
-    search() {
+    search(value) {
+      console.log(value);
+      console.log(this.items);
       // Items have already been loaded
       if (this.items.length > 0) return;
 

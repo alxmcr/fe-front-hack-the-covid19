@@ -1,12 +1,16 @@
 <template>
   <div>
-      Aqui abordars un bus
+    <h1>Abordar un bus</h1>
+    <BusAbordarCard />
   </div>
 </template>
 
 <script>
+import BusAbordarCard from "../../../components/Bus/BusAbordarCard";
+
 export default {
-  name: "BusAbordar"
+  name: "BusAbordar",
+  components: { BusAbordarCard }
 };
 </script>
 
