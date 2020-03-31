@@ -8,15 +8,59 @@
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <b-nav-item to="/">Inicio</b-nav-item>
-          <b-nav-item to="/about">Nuestro servicio</b-nav-item>
-          <b-nav-item to="/rutas">Rutas</b-nav-item>
-          <b-nav-item to="/buses">Buses</b-nav-item>
-          <b-nav-item to="/buses/abordar">Abordar a un Bus</b-nav-item>
-          <b-nav-item to="/viajes/iniciar">Iniciar Recorrido</b-nav-item>
-          <b-nav-item to="/viajes">Viajes</b-nav-item>
-          <b-nav-item to="/usuarios">Usuarios</b-nav-item>
-          <b-nav-item to="/usuarios/enfermos">Confirmados con COVID-19</b-nav-item>
+          <v-btn text color="white" to="/">Inicio</v-btn>
+
+          <v-btn text color="white" to="/buses">Buses</v-btn>
+          <v-btn text color="white" to="/viajes">Viajes</v-btn>
+
+          <v-menu offset-y>
+            <template v-slot:activator="{ on }">
+              <v-btn color="primary" dark v-on="on">
+                Usuarios
+                <v-icon right>mdi-arrow-down</v-icon>
+              </v-btn>
+            </template>
+            <v-list>
+              <v-list-item>
+                <v-list-item-title>
+                  <v-btn text to="/usuarios">Usuarios</v-btn>
+                </v-list-item-title>
+              </v-list-item>
+              <v-list-item>
+                <v-list-item-title>
+                  <v-btn text to="/usuarios/enfermos"
+                    >Confirmados con COVID-19</v-btn
+                  >
+                </v-list-item-title>
+              </v-list-item>
+            </v-list>
+          </v-menu>
+
+          <v-menu offset-y>
+            <template v-slot:activator="{ on }">
+              <v-btn color="primary" dark v-on="on">
+                Como Pasajero
+                <v-icon right>mdi-arrow-down</v-icon>
+              </v-btn>
+            </template>
+            <v-list>
+              <v-list-item>
+                <v-list-item-title>
+                  <v-btn text to="/rutas">Rutas</v-btn>
+                </v-list-item-title>
+              </v-list-item>
+              <v-list-item>
+                <v-list-item-title>
+                  <v-btn text to="/buses/abordar">Abordar a un Bus</v-btn>
+                </v-list-item-title>
+              </v-list-item>
+              <v-list-item>
+                <v-list-item-title>
+                  <v-btn text to="/viajes/iniciar">Iniciar Recorrido</v-btn>
+                </v-list-item-title>
+              </v-list-item>
+            </v-list>
+          </v-menu>
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->
@@ -49,5 +93,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>
