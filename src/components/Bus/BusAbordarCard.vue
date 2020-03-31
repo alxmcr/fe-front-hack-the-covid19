@@ -56,6 +56,7 @@
 import { RepositoryFactory } from "../../repositories/RepositoryFactory";
 // Repositories
 const BusRepository = RepositoryFactory.get("bus");
+// const ViajeRepository = RepositoryFactory.get("viaje");
 
 export default {
   data: () => ({
@@ -78,7 +79,7 @@ export default {
       });
     },
     items() {
-      return this.busList.map(entry => {
+      let busListMappedByBusCodigo = this.busList.map(entry => {
         const { bu_codigo } = entry;
 
         const BusCodigoMap =
@@ -88,8 +89,11 @@ export default {
 
         const result = Object.assign({}, entry, { BusCodigoMap });
         console.log("result", result);
+
         return result;
       });
+
+      return busListMappedByBusCodigo;
     }
   },
 
