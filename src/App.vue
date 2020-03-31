@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app color="primary" dark></v-app-bar>
+    <AppNavBar />
     <v-content>
       <v-container fluid>
         <router-view></router-view>
@@ -11,8 +11,11 @@
 </template>
 
 <script>
+import AppNavBar from "./components/Comunes/AppNavBar";
+
 export default {
   name: "App",
+  components: { AppNavBar },
 
   data: () => ({
     //
