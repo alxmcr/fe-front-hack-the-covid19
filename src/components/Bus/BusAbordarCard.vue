@@ -56,7 +56,7 @@
 import { RepositoryFactory } from "../../repositories/RepositoryFactory";
 // Repositories
 const BusRepository = RepositoryFactory.get("bus");
-// const ViajeRepository = RepositoryFactory.get("viaje");
+const ViajeRepository = RepositoryFactory.get("viaje");
 
 export default {
   data: () => ({
@@ -107,10 +107,33 @@ export default {
 
       this.isLoading = true;
 
+      // Clear
+      this.busList = [];
+
       // Lazily load input items
       try {
         const response = await BusRepository.get();
-        this.busList = response.data.data;
+        const busListAsync = response.data.data;
+
+        if (busListAsync !== null && busListAsync !== null) {
+          for (let index = 0; index < busListAsync.length; index++) {
+            const bus = busListAsync[index];
+
+            const { bu_bus } = bus;
+
+            const responseViajesByBus = await ViajeRepository.findAllViajesByBus(
+              bu_bus
+            );
+
+            const viajesByBusListAsync = responseViajesByBus.data.data;
+
+            // Set viajes
+            bus.listViaje = viajesByBusListAsync;
+            this.busList.push(bus);
+          }
+        } else {
+          this.busList = [];
+        }
       } catch (error) {
         console.error(error);
       } finally {
