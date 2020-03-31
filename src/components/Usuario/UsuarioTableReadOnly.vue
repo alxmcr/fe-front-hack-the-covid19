@@ -22,17 +22,11 @@ export default {
       singleSelect: false,
       selected: [],
       headers: [
-        {
-          text: "Dessert (100g serving)",
-          align: "start",
-          sortable: false,
-          value: "name"
-        },
-        { text: "Calories", value: "calories" },
-        { text: "Fat (g)", value: "fat" },
-        { text: "Carbs (g)", value: "carbs" },
-        { text: "Protein (g)", value: "protein" },
-        { text: "Iron (%)", value: "iron" }
+        { text: "Avatar", value: "us_avatar" },
+        { text: "Codigo", value: "us_codigo" },
+        { text: "Nombre", value: "us_nombre" },
+        { text: "Ap.Paterno", value: "us_apellido_paterno" },
+        { text: "Ap.Materno", value: "us_apellido_materno" },
       ]
     };
   }
