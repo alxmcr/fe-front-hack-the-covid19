@@ -1,5 +1,5 @@
 import Viajes from '../../../../../views/Privado/Viaje/Viajes.vue'
-import Viaje from '../../../../../views/Privado/Viaje/Viaje.vue'
+import ViajeReadOnly from '../../../../../views/Privado/Viaje/ViajeReadOnly.vue'
 
 export default [
   {
@@ -8,8 +8,8 @@ export default [
     component: Viajes
   },
   {
-    path: '/viajes/:vi_viaje',
-    name: 'viaje',
-    component: Viaje
+    path: '/viajes/:vi_viaje/info',
+    name: 'viajereadonly',
+    component: ViajeReadOnly
   },
 ]
