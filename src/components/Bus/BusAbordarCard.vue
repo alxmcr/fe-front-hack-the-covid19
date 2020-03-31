@@ -11,10 +11,10 @@
         color="white"
         hide-no-data
         hide-selected
-        item-text="Description"
+        item-text="Codigo"
         item-value="API"
         label="Codigo del Bus"
-        placeholder="Start typing to Search"
+        placeholder="Inicia escribiendo el codigo"
         prepend-icon="mdi-database-search"
         return-object
       ></v-autocomplete>
@@ -24,14 +24,20 @@
       <v-list v-if="model" class="secondary">
         <v-list-item v-for="(field, i) in fields" :key="i">
           <v-list-item-content>
-            <v-list-item-title v-text="field.value"></v-list-item-title>
-            <v-list-item-subtitle v-text="field.key"></v-list-item-subtitle>
+            <v-list-item-title v-text="field.ru_ruta"></v-list-item-title>
+            <v-list-item-subtitle
+              v-text="field.bu_codigo"
+            ></v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
       </v-list>
     </v-expand-transition>
     <v-card-actions>
-      <v-btn :disabled="!model" color="secondary darken-3" @click="model = null">
+      <v-btn
+        :disabled="!model"
+        color="secondary darken-3"
+        @click="model = null"
+      >
         Abordar
         <v-icon right>mdi-check-circle</v-icon>
       </v-btn>
@@ -52,7 +58,7 @@ const BusRepository = RepositoryFactory.get("bus");
 export default {
   name: "BusAbordarCard",
   data: () => ({
-    BusCodigoLimit: 3,
+    BusCodigoLimit: 5,
     entries: [],
     isLoading: false,
     model: null,
@@ -71,14 +77,30 @@ export default {
       });
     },
     items() {
-      return this.entries.map(entry => {
-        const BusCodigo =
-          entry.bu_codigo.length > this.BusCodigoLimit
-            ? entry.bu_codigo.slice(0, this.BusCodigoLimit) + "..."
-            : entry.bu_codigo;
+      //console.log("entries", this.entries);
+      console.log("search", this.search);
 
-        return Object.assign({}, entry, { BusCodigo });
+      let entriesMap = this.entries.map(entry => {
+        // console.log("entry", entry);
+
+        const { bu_codigo } = entry;
+        // console.log("bu_codigo", bu_codigo);
+
+        const BusCodigo =
+          bu_codigo.length > this.BusCodigoLimit
+            ? bu_codigo.slice(0, this.BusCodigoLimit) + "..."
+            : bu_codigo;
+
+        // console.log("BusCodigo", BusCodigo);
+
+        const result = Object.assign({}, entry, { BusCodigo });
+        console.log("result", result);
+
+        return result;
       });
+      console.log("entriesMap", entriesMap);
+
+      return entriesMap;
     }
   },
 
