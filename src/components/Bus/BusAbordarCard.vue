@@ -73,12 +73,14 @@ export default {
     },
     items() {
       return this.entries.map(entry => {
-        const Description =
-          entry.Description.length > this.descriptionLimit
-            ? entry.Description.slice(0, this.descriptionLimit) + "..."
-            : entry.Description;
+        const { Description } = entry;
 
-        const result = Object.assign({}, entry, { Description });
+        const DescriptionMap =
+          Description.length > this.descriptionLimit
+            ? Description.slice(0, this.descriptionLimit) + "..."
+            : Description;
+
+        const result = Object.assign({}, entry, { DescriptionMap });
         console.log("result", result);
         return result;
       });
