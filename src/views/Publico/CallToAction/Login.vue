@@ -1,15 +1,16 @@
 <template>
-  <div>
-      login
-  </div>
+  <v-container fluid>
+    <LoginForm />
+  </v-container>
 </template>
 
 <script>
-export default {
+import LoginForm from "../../../components/CallToAction/Login/LoginForm";
 
-}
+export default {
+  name: "Login",
+  components: { LoginForm }
+};
 </script>
 
-<style>
-
-</style>
+<style></style>
