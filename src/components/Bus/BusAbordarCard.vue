@@ -40,7 +40,7 @@
               <v-list v-if="field.value" class="secondary lighten-3">
                 <v-list-item v-for="(field, i) in field.value" :key="i">
                   <v-list-item-content>
-                    <ViajeOnlyReadCard :viaje="field" />
+                    <ViajeAbordarCard :viaje="field" />
                   </v-list-item-content>
                 </v-list-item>
               </v-list>
@@ -50,14 +50,6 @@
       </v-list>
     </v-expand-transition>
     <v-card-actions>
-      <v-btn
-        :disabled="!busModel"
-        color="green darken-3"
-        @click="busModel != null"
-      >
-        Abordar
-        <v-icon right>mdi-check-circle</v-icon>
-      </v-btn>
       <v-spacer></v-spacer>
       <v-btn
         :disabled="!busModel"
@@ -71,7 +63,7 @@
   </v-card>
 </template>
 <script>
-import ViajeOnlyReadCard from "../Viaje/ViajeOnlyReadCard";
+import ViajeAbordarCard from "../Viaje/ViajeAbordarCard";
 
 // Repository Factory
 import { RepositoryFactory } from "../../repositories/RepositoryFactory";
@@ -81,7 +73,7 @@ const ViajeRepository = RepositoryFactory.get("viaje");
 
 export default {
   name: "BusAbordarCard",
-  components: { ViajeOnlyReadCard },
+  components: { ViajeAbordarCard },
   data: () => ({
     busCodigoLimit: 5,
     busList: [],
@@ -144,7 +136,7 @@ export default {
 
             const { bu_bus } = bus;
 
-            const responseViajesByBus = await ViajeRepository.findAllViajesByBus(
+            const responseViajesByBus = await ViajeRepository.findAllViajesActivosByBus(
               bu_bus
             );
 
