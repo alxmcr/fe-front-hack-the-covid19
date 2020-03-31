@@ -3,18 +3,18 @@
     <!-- Header -->
     <header class="d-flex">
       <div class="container text-center my-auto">
-        <h1 class="mb-1">La Paz Te Cuida</h1>
+        <h1 class="mb-1"></h1>
         <h3 class="mb-5">
-          <em>VIAJA Y VIVE SEGURO</em>
+          <em></em>
         </h3>
-        <v-flex xs12 wrap>
+        <!-- <v-flex xs12 wrap>
           <v-btn class="ma-2" rounded color="success" dark to="/register"
             >Registrarse</v-btn
           >
           <v-btn class="ma-2" rounded color="info" dark to="/login"
             >Ingresar</v-btn
           >
-        </v-flex>
+        </v-flex> -->
       </div>
       <div class="overlay"></div>
     </header>
@@ -44,7 +44,7 @@ $images: "../../../public/img";
       fade-out($white, 0.9) 0%,
       fade-out($white, 0.9) 100%
     ),
-    url("../../../public/img/backgrounds/women-yellow.jpg");
+    url("../../../public/img/backgrounds/lapaztecuida-bg.png");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
