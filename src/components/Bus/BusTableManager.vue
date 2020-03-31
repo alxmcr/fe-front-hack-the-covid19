@@ -131,8 +131,8 @@ export default {
         .then(response => {
           this.listaBus = response.data.data;
         })
-        .catch(error => {
-          console.error(error);
+        .catch(() => {
+          
         });
     },
     editBus(item) {
@@ -182,28 +182,26 @@ export default {
           // Push
           this.listaBus.push(bus);
         })
-        .catch(error => {
-          console.error(error);
+        .catch(() => {
+          
         });
     },
     callToServiceUpdateBus(id, bus) {
       BusRepository.updateBus(id, bus)
-        .then(response => {
+        .then(() => {
           // Log
-          console.log("response", response);
         })
-        .catch(error => {
-          console.error(error);
+        .catch(() => {
+          
         });
     },
     callToServiceDeleteBus(id) {
       BusRepository.deleteBus(id)
-        .then(response => {
+        .then(() => {
           // Log
-          console.log("response", response);
         })
-        .catch(error => {
-          console.error(error);
+        .catch(() => {
+          
         });
     }
   }

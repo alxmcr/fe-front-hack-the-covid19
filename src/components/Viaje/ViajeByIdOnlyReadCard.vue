@@ -44,8 +44,8 @@ export default {
           const { data } = response;
           this.viaje = data.data;
         })
-        .catch(error => {
-          console.error(error);
+        .catch(() => {
+          
         });
     }
   }

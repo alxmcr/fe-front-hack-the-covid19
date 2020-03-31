@@ -172,8 +172,8 @@ export default {
         .then(response => {
           this.listaUsuario = response.data.data;
         })
-        .catch(error => {
-          console.error(error);
+        .catch(() => {
+          
         });
     },
     editUsuario(item) {
@@ -223,28 +223,26 @@ export default {
           // Push
           this.listaUsuario.push(usuario);
         })
-        .catch(error => {
-          console.error(error);
+        .catch(() => {
+          
         });
     },
     callToServiceUpdateUsuario(id, usuario) {
       UsuarioRepository.updateUsuario(id, usuario)
-        .then(response => {
+        .then(() => {
           // Log
-          console.log("response", response);
         })
-        .catch(error => {
-          console.error(error);
+        .catch(() => {
+          
         });
     },
     callToServiceDeleteUsuario(id) {
       UsuarioRepository.deleteUsuario(id)
-        .then(response => {
+        .then(() => {
           // Log
-          console.log("response", response);
         })
-        .catch(error => {
-          console.error(error);
+        .catch(() => {
+          
         });
     },
     getAvatar(usuario) {

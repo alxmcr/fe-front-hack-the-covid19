@@ -13,28 +13,47 @@
         <!-- Dialog -->
         <v-dialog v-model="tableRuta.dialog" max-width="500px">
           <template v-slot:activator="{ on }">
-            <v-btn color="primary" dark class="mb-2" v-on="on">Nueva Ruta</v-btn>
+            <v-btn color="primary" dark class="mb-2" v-on="on"
+              >Nueva Ruta</v-btn
+            >
           </template>
           <v-card>
             <v-card-title>
-              <span class="headline" v-if="editedIndex < 0 ">{{ formTitle }}</span>
-              <span class="headline" v-else>{{ formTitle }} #{{editedRuta.ru_ruta}}</span>
+              <span class="headline" v-if="editedIndex < 0">{{
+                formTitle
+              }}</span>
+              <span class="headline" v-else
+                >{{ formTitle }} #{{ editedRuta.ru_ruta }}</span
+              >
             </v-card-title>
 
             <v-card-text>
               <v-container>
                 <v-row>
                   <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedRuta.ru_codigo" label="Codigo"></v-text-field>
+                    <v-text-field
+                      v-model="editedRuta.ru_codigo"
+                      label="Codigo"
+                    ></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedRuta.ru_lugar_partida" label="Partida"></v-text-field>
+                    <v-text-field
+                      v-model="editedRuta.ru_lugar_partida"
+                      label="Partida"
+                    ></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedRuta.ru_lugar_destino" label="Llegada"></v-text-field>
+                    <v-text-field
+                      v-model="editedRuta.ru_lugar_destino"
+                      label="Llegada"
+                    ></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="4">
-                    <v-checkbox v-model="editedRuta.ru_estado" color="primary" label="Estado"></v-checkbox>
+                    <v-checkbox
+                      v-model="editedRuta.ru_estado"
+                      color="primary"
+                      label="Estado"
+                    ></v-checkbox>
                   </v-col>
                 </v-row>
               </v-container>
@@ -52,7 +71,7 @@
     <template v-slot:item.ru_estado="{ item }">
       <v-icon>
         {{
-        item.ru_estado ? "mdi-checkbox-marked" : "mdi-checkbox-blank-outline"
+          item.ru_estado ? "mdi-checkbox-marked" : "mdi-checkbox-blank-outline"
         }}
       </v-icon>
     </template>
@@ -131,8 +150,8 @@ export default {
         .then(response => {
           this.listaRuta = response.data.data;
         })
-        .catch(error => {
-          console.error(error);
+        .catch(() => {
+          
         });
     },
     editRuta(item) {
@@ -182,33 +201,30 @@ export default {
           // Push
           this.listaRuta.push(ruta);
         })
-        .catch(error => {
-          console.error(error);
+        .catch(() => {
+          
         });
     },
     callToServiceUpdateRuta(id, ruta) {
       RutaRepository.updateRuta(id, ruta)
-        .then(response => {
+        .then(() => {
           // Log
-          console.log("response", response);
         })
-        .catch(error => {
-          console.error(error);
+        .catch(() => {
+          
         });
     },
     callToServiceDeleteRuta(id) {
       RutaRepository.deleteRuta(id)
-        .then(response => {
+        .then(() => {
           // Log
-          console.log("response", response);
         })
-        .catch(error => {
-          console.error(error);
+        .catch(() => {
+          
         });
     }
   }
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

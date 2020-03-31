@@ -133,7 +133,6 @@ export default {
             : bu_codigo;
 
         const result = Object.assign({}, entry, { BusCodigoMap });
-        console.log("result", result);
 
         return result;
       });
@@ -156,34 +155,31 @@ export default {
       this.busList = [];
 
       // Lazily load input items
-      try {
-        const response = await BusRepository.get();
-        const busListAsync = response.data.data;
 
-        if (busListAsync !== null && busListAsync !== null) {
-          for (let index = 0; index < busListAsync.length; index++) {
-            const bus = busListAsync[index];
+      const response = await BusRepository.get();
+      const busListAsync = response.data.data;
 
-            const { bu_bus } = bus;
+      if (busListAsync !== null && busListAsync !== null) {
+        for (let index = 0; index < busListAsync.length; index++) {
+          const bus = busListAsync[index];
 
-            const responseViajesByBus = await ViajeRepository.findAllViajesActivosByBus(
-              bu_bus
-            );
+          const { bu_bus } = bus;
 
-            const viajesByBusListAsync = responseViajesByBus.data.data;
+          const responseViajesByBus = await ViajeRepository.findAllViajesActivosByBus(
+            bu_bus
+          );
 
-            // Set viajes
-            bus.listViaje = viajesByBusListAsync;
-            this.busList.push(bus);
-          }
-        } else {
-          this.busList = [];
+          const viajesByBusListAsync = responseViajesByBus.data.data;
+
+          // Set viajes
+          bus.listViaje = viajesByBusListAsync;
+          this.busList.push(bus);
         }
-      } catch (error) {
-        console.error(error);
-      } finally {
-        this.isLoading = false;
+      } else {
+        this.busList = [];
       }
+
+      this.isLoading = false;
     }
   }
 };

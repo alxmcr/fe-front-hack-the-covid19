@@ -7,34 +7,57 @@
   >
     <template v-slot:top>
       <v-toolbar flat color="white">
-        <v-toolbar-title>Lista de Usuarios Contagiados con COVID-19</v-toolbar-title>
+        <v-toolbar-title
+          >Lista de Usuarios Contagiados con COVID-19</v-toolbar-title
+        >
         <v-divider class="mx-4" inset vertical></v-divider>
         <v-spacer></v-spacer>
         <!-- Dialog -->
         <v-dialog v-model="tableUsuarioEnfermo.dialog" max-width="500px">
           <template v-slot:activator="{ on }">
-            <v-btn color="primary" dark class="mb-2" v-on="on">Nuevo Usuario Contagiado</v-btn>
+            <v-btn color="primary" dark class="mb-2" v-on="on"
+              >Nuevo Usuario Contagiado</v-btn
+            >
           </template>
           <v-card>
             <v-card-title>
-              <span class="headline" v-if="editedIndex < 0 ">{{ formTitle }}</span>
-              <span class="headline" v-else>{{ formTitle }} #{{editedUsuarioEnfermo.ue_usuario_enfermo}}</span>
+              <span class="headline" v-if="editedIndex < 0">{{
+                formTitle
+              }}</span>
+              <span class="headline" v-else
+                >{{ formTitle }} #{{
+                  editedUsuarioEnfermo.ue_usuario_enfermo
+                }}</span
+              >
             </v-card-title>
 
             <v-card-text>
               <v-container>
                 <v-row>
                   <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedUsuarioEnfermo.ru_codigo" label="Codigo"></v-text-field>
+                    <v-text-field
+                      v-model="editedUsuarioEnfermo.ru_codigo"
+                      label="Codigo"
+                    ></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedUsuarioEnfermo.ru_lugar_partida" label="Partida"></v-text-field>
+                    <v-text-field
+                      v-model="editedUsuarioEnfermo.ru_lugar_partida"
+                      label="Partida"
+                    ></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedUsuarioEnfermo.ru_lugar_destino" label="Llegada"></v-text-field>
+                    <v-text-field
+                      v-model="editedUsuarioEnfermo.ru_lugar_destino"
+                      label="Llegada"
+                    ></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="4">
-                    <v-checkbox v-model="editedUsuarioEnfermo.us_estado" color="primary" label="Estado"></v-checkbox>
+                    <v-checkbox
+                      v-model="editedUsuarioEnfermo.us_estado"
+                      color="primary"
+                      label="Estado"
+                    ></v-checkbox>
                   </v-col>
                 </v-row>
               </v-container>
@@ -57,12 +80,14 @@
     <template v-slot:item.us_estado="{ item }">
       <v-icon>
         {{
-        item.us_estado ? "mdi-checkbox-marked" : "mdi-checkbox-blank-outline"
+          item.us_estado ? "mdi-checkbox-marked" : "mdi-checkbox-blank-outline"
         }}
       </v-icon>
     </template>
     <template v-slot:item.actions="{ item }">
-      <v-icon small class="mr-2" @click="editUsuarioEnfermo(item)">mdi-pencil</v-icon>
+      <v-icon small class="mr-2" @click="editUsuarioEnfermo(item)"
+        >mdi-pencil</v-icon
+      >
       <v-icon small @click="deleteUsuarioEnfermo(item)">mdi-delete</v-icon>
     </template>
     <template v-slot:no-data>
@@ -151,7 +176,9 @@ export default {
   },
   computed: {
     formTitle() {
-      return this.editedIndex === -1 ? "Nuevo Usuario Contagiado" : "Editar Usuario Contagiado";
+      return this.editedIndex === -1
+        ? "Nuevo Usuario Contagiado"
+        : "Editar Usuario Contagiado";
     }
   },
 
@@ -170,8 +197,8 @@ export default {
         .then(response => {
           this.listaUsuarioEnfermo = response.data.data;
         })
-        .catch(error => {
-          console.error(error);
+        .catch(() => {
+          
         });
     },
     editUsuario(item) {
@@ -193,7 +220,10 @@ export default {
     close() {
       this.tableUsuarioEnfermo.dialog = false;
       setTimeout(() => {
-        this.editedUsuarioEnfermo = Object.assign({}, this.defaultUsuarioEnfermo);
+        this.editedUsuarioEnfermo = Object.assign(
+          {},
+          this.defaultUsuarioEnfermo
+        );
         this.editedIndex = -1;
       }, 300);
     },
@@ -203,9 +233,15 @@ export default {
         // Get id
         const { ue_usuario_enfermo } = this.editedUsuarioEnfermo;
         // Call to service
-        this.callToServiceUpdateUsuarioEnfermo(ue_usuario_enfermo, this.editedUsuarioEnfermo);
+        this.callToServiceUpdateUsuarioEnfermo(
+          ue_usuario_enfermo,
+          this.editedUsuarioEnfermo
+        );
         // Update
-        Object.assign(this.listaUsuarioEnfermo[this.editedIndex], this.editedUsuarioEnfermo);
+        Object.assign(
+          this.listaUsuarioEnfermo[this.editedIndex],
+          this.editedUsuarioEnfermo
+        );
       } else {
         // Call to service
         this.callToServiceCreateUsuarioEnfermo(this.editedUsuarioEnfermo);
@@ -221,28 +257,26 @@ export default {
           // Push
           this.listaUsuarioEnfermo.push(usuario);
         })
-        .catch(error => {
-          console.error(error);
+        .catch(() => {
+          
         });
     },
     callToServiceUpdateUsuarioEnfermo(id, usuario) {
       UsuarioEnfermoRepository.updateUsuario(id, usuario)
-        .then(response => {
+        .then(() => {
           // Log
-          console.log("response", response);
         })
-        .catch(error => {
-          console.error(error);
+        .catch(() => {
+          
         });
     },
     callToServiceDeleteUsuarioEnfermo(id) {
       UsuarioEnfermoRepository.deleteUsuario(id)
-        .then(response => {
+        .then(() => {
           // Log
-          console.log("response", response);
         })
-        .catch(error => {
-          console.error(error);
+        .catch(() => {
+          
         });
     },
     getAvatar(usuario) {
@@ -264,5 +298,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

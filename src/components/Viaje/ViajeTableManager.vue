@@ -178,8 +178,8 @@ export default {
         .then(response => {
           this.listaViaje = response.data.data;
         })
-        .catch(error => {
-          console.error(error);
+        .catch(() => {
+          
         });
     },
     editViaje(item) {
@@ -229,28 +229,26 @@ export default {
           // Push
           this.listaViaje.push(viaje);
         })
-        .catch(error => {
-          console.error(error);
+        .catch(() => {
+          
         });
     },
     callToServiceUpdateViaje(id, viaje) {
       ViajeRepository.updateViaje(id, viaje)
-        .then(response => {
+        .then(() => {
           // Log
-          console.log("response", response);
         })
-        .catch(error => {
-          console.error(error);
+        .catch(() => {
+          
         });
     },
     callToServiceDeleteViaje(id) {
       ViajeRepository.deleteViaje(id)
-        .then(response => {
+        .then(() => {
           // Log
-          console.log("response", response);
         })
-        .catch(error => {
-          console.error(error);
+        .catch(() => {
+          
         });
     }
   }
