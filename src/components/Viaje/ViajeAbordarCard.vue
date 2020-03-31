@@ -1,9 +1,13 @@
 <template>
   <v-card>
-    <v-card-title>Viaje: {{ viaje.vi_codigo }}</v-card-title>
+    <v-card-title>Viaje #{{ viaje.vi_viaje }}</v-card-title>
     <v-card-text>
       <v-list class="secondary lighten-3">
         <v-list-item>
+          <v-list-item-content>
+            <b>Codigo:</b>
+            <span>{{ viaje.vi_codigo }}</span>
+          </v-list-item-content>
           <v-list-item-content>
             <b>Fecha Viaje:</b>
             <span>{{ viaje.vi_fecha_viaje }}</span>
