@@ -44,7 +44,7 @@
       <v-spacer></v-spacer>
       <div class="my-2">
         <v-btn @click="submitClienteRegister" depressed large color="success"
-          >Ingresar</v-btn
+          >Registrarse</v-btn
         >
       </div>
       <v-spacer></v-spacer>
