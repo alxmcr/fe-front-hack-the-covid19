@@ -25,19 +25,16 @@
               <v-container>
                 <v-row>
                   <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedRuta.name" label="Dessert name"></v-text-field>
+                    <v-text-field v-model="editedRuta.ru_codigo" label="Codigo"></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedRuta.calories" label="Calories"></v-text-field>
+                    <v-text-field v-model="editedRuta.ru_lugar_partida" label="Partida"></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedRuta.fat" label="Fat (g)"></v-text-field>
+                    <v-text-field v-model="editedRuta.ru_lugar_destino" label="Llegada"></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedRuta.carbs" label="Carbs (g)"></v-text-field>
-                  </v-col>
-                  <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedRuta.protein" label="Protein (g)"></v-text-field>
+                    <v-checkbox v-model="editedRuta.ru_estado" color="primary" label="Estado"></v-checkbox>
                   </v-col>
                 </v-row>
               </v-container>
@@ -142,12 +139,17 @@ export default {
       this.editedIndex = this.rutas.indexOf(item);
       this.editedRuta = Object.assign({}, item);
       this.tableRutas.dialog = true;
+      console.log("this.editedIndex", this.editedIndex);
     },
 
     deleteRuta(item) {
       const index = this.rutas.indexOf(item);
-      confirm("Are you sure you want to delete this item?") &&
-        this.rutas.splice(index, 1);
+      // Get id
+      const { ru_ruta } = item;
+      // Call to service
+      this.callToServiceDeleteRuta(ru_ruta);
+      // Quitar de la tabla
+      this.rutas.splice(index, 1);
     },
 
     close() {
@@ -159,24 +161,52 @@ export default {
     },
 
     save() {
+      console.log("this.editedIndextttt", this.editedIndex);
       if (this.editedIndex > -1) {
+        // Get id
+        const { ru_ruta } = this.editedRuta;
         // Call to service
-        this.callToServiceUpdateRuta(this.editedRuta);
-        // Update table
+        this.callToServiceUpdateRuta(ru_ruta, this.editedRuta);
+        // Update
         Object.assign(this.rutas[this.editedIndex], this.editedRuta);
       } else {
         // Call to service
         this.callToServiceCreateRuta(this.editedRuta);
-        // Push
-        this.rutas.push(this.editedRuta);
       }
       this.close();
     },
     callToServiceCreateRuta(ruta) {
-      console.log("Ruta a crear", ruta);
+      RutasRepository.createRuta(ruta)
+        .then(response => {
+          const { data } = response;
+          // Ruta creada
+          const ruta = data.data;
+          // Push
+          this.rutas.push(ruta);
+        })
+        .catch(error => {
+          console.error(error);
+        });
     },
-    callToServiceUpdateRuta(ruta) {
-      console.log("Ruta a actualizar", ruta);
+    callToServiceUpdateRuta(id, ruta) {
+      RutasRepository.updateRuta(id, ruta)
+        .then(response => {
+          // Log
+          console.log("response", response);
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    },
+    callToServiceDeleteRuta(id) {
+      RutasRepository.deleteRuta(id)
+        .then(response => {
+          // Log
+          console.log("response", response);
+        })
+        .catch(error => {
+          console.error(error);
+        });
     }
   }
 };
