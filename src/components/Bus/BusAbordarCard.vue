@@ -47,7 +47,7 @@
 export default {
   data: () => ({
     descriptionLimit: 60,
-    entries: [],
+    apiList: [],
     isLoading: false,
     apiModel: null,
     search: null
@@ -65,7 +65,7 @@ export default {
       });
     },
     items() {
-      return this.entries.map(entry => {
+      return this.apiList.map(entry => {
         const { Description } = entry;
 
         const DescriptionMap =
@@ -90,13 +90,12 @@ export default {
 
       this.isLoading = true;
 
-      // Lazily load input items
       fetch("https://api.publicapis.org/entries")
         .then(res => res.json())
         .then(res => {
           const { count, entries } = res;
           this.count = count;
-          this.entries = entries;
+          this.apiList = entries;
         })
         .catch(err => {
           console.log(err);
