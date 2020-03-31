@@ -1,15 +1,16 @@
 <template>
-  <div>
-      register
-  </div>
+  <v-container fluid>
+    <RegisterForm />
+  </v-container>
 </template>
 
 <script>
-export default {
+import RegisterForm from "../../../components/CallToAction/Register/RegisterForm";
 
-}
+export default {
+  name: "Register",
+  components: { RegisterForm }
+};
 </script>
 
-<style>
-
-</style>
+<style></style>
