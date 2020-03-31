@@ -7,7 +7,14 @@
         <h3 class="mb-5">
           <em>VIAJA Y VIVE SEGURO</em>
         </h3>
-        <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Find Out More</a>
+        <v-flex xs12 wrap>
+          <v-btn class="ma-2" rounded color="success" dark to="/register"
+            >Registrarse</v-btn
+          >
+          <v-btn class="ma-2" rounded color="info" dark to="/login"
+            >Ingresar</v-btn
+          >
+        </v-flex>
       </div>
       <div class="overlay"></div>
     </header>
