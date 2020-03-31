@@ -14,6 +14,10 @@ export default {
     return AxiosRepository.get(`${resource}/buses/${idBus}`);
   },
 
+  findAllViajesActivosByBus(idBus) {
+    return AxiosRepository.get(`${resource}/buses/${idBus}/activos`);
+  },
+
   createViaje(payload) {
     return AxiosRepository.post(`${resource}`, payload);
   },
