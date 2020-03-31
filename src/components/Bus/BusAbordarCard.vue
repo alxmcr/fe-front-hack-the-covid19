@@ -40,7 +40,7 @@
               <v-list v-if="field.value" class="secondary lighten-3">
                 <v-list-item v-for="(field, i) in field.value" :key="i">
                   <v-list-item-content>
-                    {{ field }}
+                    <ViajeOnlyReadCard :viaje="field" />
                   </v-list-item-content>
                 </v-list-item>
               </v-list>
@@ -71,6 +71,8 @@
   </v-card>
 </template>
 <script>
+import ViajeOnlyReadCard from "../Viaje/ViajeOnlyReadCard";
+
 // Repository Factory
 import { RepositoryFactory } from "../../repositories/RepositoryFactory";
 // Repositories
@@ -78,6 +80,8 @@ const BusRepository = RepositoryFactory.get("bus");
 const ViajeRepository = RepositoryFactory.get("viaje");
 
 export default {
+  name: "BusAbordarCard",
+  components: { ViajeOnlyReadCard },
   data: () => ({
     busCodigoLimit: 5,
     busList: [],
